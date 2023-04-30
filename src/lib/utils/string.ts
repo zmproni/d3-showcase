@@ -25,8 +25,6 @@ export const highlightWords = (word: string, sentence: string) => {
 			t.markup('<mark class="highlight">', '</mark>');
 		}
 	});
-	console.log(document.out(its.markedUpText));
-
 	return document.out(its.markedUpText);
 };
 
