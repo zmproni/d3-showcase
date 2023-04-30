@@ -82,7 +82,7 @@
 	<svg style="background: {background};" {height} {width}>
 		<g transform={`translate(${width / 2}, ${height / 2})`}>
 			{#if words}
-				{#each words as word}
+				{#each words as word (word.text + word.pos)}
 					<text
 						on:mouseover={(event) => dispatch('mouseover', { event, word })}
 						on:mouseleave={(event) => dispatch('mouseleave', { event, word })}
