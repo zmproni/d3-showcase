@@ -22,7 +22,7 @@
 <main class="bg-slate-100">
 	<div class="m-auto max-w-4xl p-8 text-sm">
 		<article>
-			<h1 class='text-center p-4'>D3 Svelte Word Cloud</h1>
+			<h1 class="p-4 text-center">D3 Svelte Word Cloud</h1>
 			<br />
 			<WordCloudSection {words} {fontSize} {wordPadding} {textContent} />
 			<FormSection

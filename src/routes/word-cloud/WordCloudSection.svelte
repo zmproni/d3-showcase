@@ -57,7 +57,7 @@
 		{fontSize}
 		data={words}
 		{width}
-		height={height-30}
+		height={height - 30}
 		{wordPadding}
 		on:focus={displayTooltip}
 		on:focusout={hideTooltip}
@@ -65,16 +65,16 @@
 	/>
 </section>
 {#if detail}
-<div
-	class="z-index absolute z-[999] max-h-80 w-80 overflow-y-scroll border border-black bg-white p-4 text-black"
-	style={popupStyle}
-	transition:popup={{ delay: 0, duration: 300, x: 0, y: 0 }}
->
-	<p class="pb-2 !text-sm"><b>{detail.word}</b></p>
-	{#each getSentences(textContent, detail.sentences) as sentence}
-		<p class="pb-2 !text-sm">{@html highlightWords(detail.word, sentence)}</p>
-	{/each}
-</div>
+	<div
+		class="z-index absolute z-[999] max-h-80 w-80 overflow-y-scroll border border-black bg-white p-4 text-black"
+		style={popupStyle}
+		transition:popup={{ delay: 0, duration: 300, x: 0, y: 0 }}
+	>
+		<p class="pb-2 !text-sm"><b>{detail.word}</b></p>
+		{#each getSentences(textContent, detail.sentences) as sentence}
+			<p class="pb-2 !text-sm">{@html highlightWords(detail.word, sentence)}</p>
+		{/each}
+	</div>
 {/if}
 
 <style>
