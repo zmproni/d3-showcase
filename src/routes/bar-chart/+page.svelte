@@ -126,6 +126,7 @@
 	<h1 id="title">United States Quarterly GDP</h1>
 	<div bind:this={anchor} id="container" />
 	<div id="tooltip" class='tooltip'/>
+  <a class='text-center px-16' href='https://codepen.io/zmproni/pen/JjmyBeW'>https://codepen.io/zmproni/pen/JjmyBeW</a>
 </article>
 
 <style>
@@ -160,8 +161,8 @@
 		z-index: 999;
 		width: 120px;
 		height: 100px;
-		top: 200px;
-		left: 250px;
+		top: 150px;
+		left: 300px;
 		box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 		opacity: 0;
 		transition: all 200ms ease-out;
