@@ -11,13 +11,15 @@
 
 	let pageWidth: number;
 	let timeout: NodeJS.Timeout;
-	let detail: { x: number; y: number; word: string; sentences: number[] } | null;
+	let detail: { x: number; y: number; word: string; count:number; sentences: number[] } | null;
 	let resizeHeight = 0;
+
+	let container: HTMLElement;
 
 	$: popupX = (detail?.x ?? 0) + width / 2;
 	$: popupStyle = detail
-		? `top:${detail.y + height / 2}px;
-		left:${popupX + 360 > pageWidth ? pageWidth - 360 : popupX}px; 
+		? `top:${detail.y + height / 2 + container.getBoundingClientRect().y}px;
+		left:${popupX + container.getBoundingClientRect().x + 360 > pageWidth ? pageWidth - 360 : popupX + container.getBoundingClientRect().x}px; 
 		transition: all 300ms ease;`
 		: '';
 
@@ -25,8 +27,8 @@
 		if (timeout) {
 			clearTimeout(timeout);
 		}
-		const { x, y, text, sentences } = event.detail.word;
-		detail = { x, y, word: text, sentences };
+		const { x, y, text, count, sentences } = event.detail.word;
+		detail = { x, y, word: text, sentences, count };
 	};
 
 	const hideTooltip = () => {
@@ -51,13 +53,12 @@
 
 <svelte:window bind:innerWidth={pageWidth} />
 
-<section class="card resize shadow-md" bind:clientWidth={width} bind:clientHeight={height}>
-	<br />
+<section bind:this={container} class="card resize shadow-md" bind:clientWidth={width} bind:clientHeight={height}>
 	<WordCloud
 		{fontSize}
 		data={words}
 		{width}
-		height={height - 30}
+		height={height-10}
 		{wordPadding}
 		on:focus={displayTooltip}
 		on:focusout={hideTooltip}
@@ -70,12 +71,16 @@
 		style={popupStyle}
 		transition:popup={{ delay: 0, duration: 300, x: 0, y: 0 }}
 	>
-		<p class="pb-2 !text-sm"><b>{detail.word}</b></p>
+		<p class="pb-2 !text-sm"><b>{detail.word} [{detail.count}]</b></p>
 		{#each getSentences(textContent, detail.sentences) as sentence}
 			<p class="pb-2 !text-sm">{@html highlightWords(detail.word, sentence)}</p>
 		{/each}
 	</div>
 {/if}
+<!-- 
+{#each words as word}
+	{JSON.stringify(word)}
+{/each} -->
 
 <style>
 	.resize {

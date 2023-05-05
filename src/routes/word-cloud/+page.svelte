@@ -19,7 +19,7 @@
 	<title>D3 Word Cloud</title>
 </svelte:head>
 
-<main class="bg-slate-100">
+<main class="bg-slate-100 pt-16">
 	<div class="m-auto max-w-4xl p-8 text-sm">
 		<article>
 			<h1 class="p-4 text-center">D3 Svelte Word Cloud</h1>
